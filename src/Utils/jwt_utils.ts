@@ -12,9 +12,9 @@ if (!accessToken || !refreshToken) {
 
 // access token short life
 
-export const generateAccessToken = (payload: any) => {
+export const generateAccessToken = (userId: number) => {
   return jwt.sign(
-    payload,
+    {userId},
     accessToken,
     { expiresIn: '1h',
         algorithm: 'HS256'
@@ -24,9 +24,9 @@ export const generateAccessToken = (payload: any) => {
 
 // refresh token long life
 
-export const generateRefreshToken = (payload: any) => {
+export const generateRefreshToken = (userId: number) => {
     return jwt.sign(
-        payload,
+        {userId},
         refreshToken,
         { expiresIn: '7d',
             algorithm: 'HS256'
