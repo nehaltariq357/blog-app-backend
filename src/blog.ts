@@ -2,7 +2,10 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
+import createRoutes from './routes/posts/createPost.routes';
+import allRoutes from './routes/posts/allPost.routes';
+import editRoutes from './routes/posts/editPost.routes';
+import delRoutes from './routes/posts/delPost.routes';
 import healthRoutes from './routes/api.health.route';
 import signupRoutes from './routes/signup.routes';
 import loginRoutes from './routes/login.routes';
@@ -26,5 +29,12 @@ app.use('/api', signupRoutes);
 app.use('/api', loginRoutes);
 // Use the logout routes
 app.use('/api', logoutRoutes);
+
+// posts routes
+app.use('/api', createRoutes);
+app.use('/api', allRoutes);
+app.use('/api', editRoutes);
+app.use('/api', delRoutes);
+
 
 export default app;

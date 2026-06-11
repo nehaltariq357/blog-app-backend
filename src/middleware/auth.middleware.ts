@@ -28,9 +28,10 @@ export const middlewareAuth = (req: Request, res: Response, next: NextFunction) 
     }
 
     try {
-        const decoded = jwt.verify(token,accessTokenSecret!)
-        console.log("decoded",decoded),
-        (req as any).userId = (decoded as jwt.JwtPayload).userId;
+        const decoded = jwt.verify(token, accessTokenSecret!)
+        console.log("decoded", decoded),
+        (req as any).user = decoded
+        next(); // Proceed to the next middleware or route handler
     }catch (err) {
         return res.status(401).json({ message: 'Invalid access token' });
     }
