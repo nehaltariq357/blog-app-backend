@@ -15,6 +15,14 @@ export const createPost = async (req:Request , res: Response) => {
                 content,
                 published,
                 authorId: userId // associate post with authenticated user
+            },
+            include: {
+                author: {
+                    select: {
+                        id: true,
+                        name: true,
+                    }
+                }
             }
         })
         res.status(201).json(post);

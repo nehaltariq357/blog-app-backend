@@ -10,6 +10,9 @@ import healthRoutes from './routes/api.health.route';
 import signupRoutes from './routes/signup.routes';
 import loginRoutes from './routes/login.routes';
 import logoutRoutes from './routes/logout.routes';
+import createCmtRoutes from './routes/comments/createCmt.routes';
+import allCmtRoutes from './routes/comments/allCmt.routes';
+import delCmtRoutes from './routes/comments/delCmt.routes';
 dotenv.config(); // Load environment variables from .env file
 const app = express();
 app.use(cookieParser());
@@ -35,6 +38,11 @@ app.use('/api', createRoutes);
 app.use('/api', allRoutes);
 app.use('/api', editRoutes);
 app.use('/api', delRoutes);
+
+// comments routes
+app.use('/api', createCmtRoutes);
+app.use('/api', allCmtRoutes);
+app.use('/api', delCmtRoutes);
 
 
 export default app;
