@@ -13,6 +13,12 @@ import logoutRoutes from './routes/logout.routes';
 import createCmtRoutes from './routes/comments/createCmt.routes';
 import allCmtRoutes from './routes/comments/allCmt.routes';
 import delCmtRoutes from './routes/comments/delCmt.routes';
+
+import createLikeRoutes from './routes/likes/createLike.routes';
+import deleteLikeRoutes from './routes/likes/deleteLike.routes';
+import getLikeCountRoutes from './routes/likes/getLike.count.routes';
+
+
 dotenv.config(); // Load environment variables from .env file
 const app = express();
 app.use(cookieParser());
@@ -44,5 +50,9 @@ app.use('/api', createCmtRoutes);
 app.use('/api', allCmtRoutes);
 app.use('/api', delCmtRoutes);
 
+// likes routes
+app.use('/api', createLikeRoutes);
+app.use('/api', deleteLikeRoutes);
+app.use('/api', getLikeCountRoutes);
 
 export default app;

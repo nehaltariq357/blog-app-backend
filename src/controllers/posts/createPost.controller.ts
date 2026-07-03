@@ -5,15 +5,15 @@ import { Request, Response } from "express";
 
 export const createPost = async (req:Request , res: Response) => {
     try {
-        const { title, content, published } = req.body; // post data from request body
+        const { title, content, visibility } = req.body; // post data from request body
         // req.user is added by authentication middleware; cast to any to satisfy TypeScript
-        const userId = Number(req.user.userId) 
+        const userId = (req as any).user.userId
         // Create new post in database
         const post = await prisma.post.create({
             data: {
                 title,
                 content,
-                published,
+                visibility, // public or private visibility
                 authorId: userId // associate post with authenticated user
             },
             include: {

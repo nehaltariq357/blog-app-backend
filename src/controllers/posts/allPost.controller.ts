@@ -5,12 +5,21 @@ import {Request, Response} from "express";
 export const getAllPosts = async (req: Request, res: Response) => {
     try{
         const posts = await prisma.post.findMany({
+            where:{
+                visibility:"PUBLIC"
+            },
             include:{
                 author:{
                     select:{
                         id: true,
                         name: true,
-                        email: true
+                        
+                    }
+                },
+                _count:{
+                    select:{
+                        comments:true,
+                        likes:true
                     }
                 }
             }

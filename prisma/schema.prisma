@@ -19,15 +19,21 @@ model User {
   password String 
   posts Post[] 
   comments Comment[]
+  likes Like[]
 } 
+enum Visibility {
+  PUBLIC
+  PRIVATE
+}
 model Post { 
   id        Int     @id @default(autoincrement()) 
   title     String
   content   String?
-  published Boolean @default(false) 
+  visibility Visibility  @default(PUBLIC)
   author    User    @relation(fields: [authorId], references: [id]) 
   authorId  Int
   comments Comment[]
+  likes Like[]
 } 
 
 // comment model
@@ -44,4 +50,19 @@ model Comment{
 
   post Post @relation(fields: [postId], references: [id])
   postId Int
+}
+
+// like model
+
+model Like{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+
+  post Post @relation(fields: [postId], references: [id])
+  postId Int
+
+  @@unique([userId, postId]) // ensures a user can like a post only once
 }
