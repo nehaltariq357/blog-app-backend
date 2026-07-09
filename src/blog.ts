@@ -13,7 +13,7 @@ import logoutRoutes from './routes/logout.routes';
 import createCmtRoutes from './routes/comments/createCmt.routes';
 import allCmtRoutes from './routes/comments/allCmt.routes';
 import delCmtRoutes from './routes/comments/delCmt.routes';
-
+import getPostByIdRoutes from './routes/posts/getPostById.route';
 import createLikeRoutes from './routes/likes/createLike.routes';
 import deleteLikeRoutes from './routes/likes/deleteLike.routes';
 import getLikeCountRoutes from './routes/likes/getLike.count.routes';
@@ -54,5 +54,6 @@ app.use('/api', delCmtRoutes);
 app.use('/api', createLikeRoutes);
 app.use('/api', deleteLikeRoutes);
 app.use('/api', getLikeCountRoutes);
-
+// get post by id route
+app.use('/api', getPostByIdRoutes);
 export default app;

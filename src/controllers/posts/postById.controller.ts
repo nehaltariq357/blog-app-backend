@@ -5,7 +5,7 @@ export const getPostById = async(req: Request, res: Response) => {
     try{
         const postId = Number(req.params.postId); // get postId from request params
 
-        const userId = (req as any).user.userId // get userId from request object
+        const userId = (req as any).user?.userId // get userId from request object
 
         const post = await prisma.post.findUnique({
             where:{
@@ -41,6 +41,7 @@ export const getPostById = async(req: Request, res: Response) => {
         res.status(200).json(post);
 
     }catch (error) {
+        console.log("GET POST ERROR:", error);
         res.status(500).json({ message: "Error occurred while fetching post by ID" });
     }
 }

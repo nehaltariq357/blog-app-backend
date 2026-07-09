@@ -24,7 +24,7 @@ export const middlewareAuth = (req: Request, res: Response, next: NextFunction) 
     console.log("token",token)
 
     if (!token) {
-        return res.status(401).json({ message: 'Access token not found' });
+        return res.status(401).json({ message: 'Access token not foundd' });
     }
 
     try {

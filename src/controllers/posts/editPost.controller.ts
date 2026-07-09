@@ -4,8 +4,8 @@ import { Request, Response } from "express";
 
 export const editPost = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params // post id from request params
-        const { title, content, published } = req.body // updated post data from request body
+        const { postId } = req.params // post id from request params
+        const { title, content, visibility } = req.body // updated post data from request body
 
         const user = (req as any).user;
         const userId = typeof user?.userId === "string" ? Number(user.userId) : user?.userId; // from authentication middleware
@@ -13,7 +13,7 @@ export const editPost = async (req: Request, res: Response) => {
 
         // Check if post exists and belongs to authenticated user
         const existingPost = await prisma.post.findUnique({
-            where: { id: Number(id) },
+            where: { id: Number(postId) },
         })
 
         if (!existingPost) {
@@ -25,11 +25,11 @@ export const editPost = async (req: Request, res: Response) => {
         }
         // Update post in database
         const post = await prisma.post.update({
-            where: { id: Number(id) }, // post id from request params
+            where: { id: Number(postId) }, // post id from request params
             data: {
                 title,
                 content,
-                published
+                visibility
             }
 
         })
