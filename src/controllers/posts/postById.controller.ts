@@ -9,7 +9,7 @@ export const getPostById = async(req: Request, res: Response) => {
 
         const post = await prisma.post.findUnique({
             where:{
-                id: postId
+                slug:req.params.slug
             },
             include:{
                 author: {

@@ -29,6 +29,9 @@ model Post {
   id        Int     @id @default(autoincrement()) 
   title     String
   content   String?
+  slug      String  @unique // unique identifier for the post, often used in URLs
+  excerpt   String? // short summary of the post
+  thumbnail String? // thumbnail image url
   visibility Visibility  @default(PUBLIC)
   author    User    @relation(fields: [authorId], references: [id]) 
   authorId  Int

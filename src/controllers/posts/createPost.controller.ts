@@ -1,7 +1,7 @@
 import { prisma } from "../../lib/prisma";
 import { Request, Response } from "express";
 import sanitizeHtml from "sanitize-html";
-
+import slugify from "slugify";
 
 export const createPost = async (req: Request, res: Response) => {
     try {
@@ -9,7 +9,7 @@ export const createPost = async (req: Request, res: Response) => {
         // req.user is added by authentication middleware; cast to any to satisfy TypeScript
         const userId = (req as any).user.userId
         // Create new post in database
-
+        const slug = slugify(title, { lower: true, strict: true }); // generate slug from title
         const cleanContent = sanitizeHtml(content, {
             allowedTags: sanitizeHtml.defaults.allowedTags.concat([
                 "img",
@@ -24,6 +24,7 @@ export const createPost = async (req: Request, res: Response) => {
         const post = await prisma.post.create({
             data: {
                 title,
+                slug, // generated slug
                 content: cleanContent, // sanitized content
                 visibility, // public or private visibility
                 authorId: userId // associate post with authenticated user
@@ -39,6 +40,7 @@ export const createPost = async (req: Request, res: Response) => {
         })
         res.status(201).json(post);
     } catch (error) {
+        console.log("error",error)
         res.status(500).json({ error: "Failed to create post" });
     }
 }
