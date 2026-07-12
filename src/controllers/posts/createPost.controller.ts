@@ -3,6 +3,8 @@ import { Request, Response } from "express";
 import sanitizeHtml from "sanitize-html";
 import slugify from "slugify";
 
+
+
 export const createPost = async (req: Request, res: Response) => {
     try {
         const { title, content, visibility } = req.body; // post data from request body
@@ -25,6 +27,8 @@ export const createPost = async (req: Request, res: Response) => {
             data: {
                 title,
                 slug, // generated slug
+                excerpt: cleanContent.substring(0, 100), // first 100 characters of sanitized content
+                thumbnail: (req as any).file?.path || null, // optional thumbnail from uploaded file
                 content: cleanContent, // sanitized content
                 visibility, // public or private visibility
                 authorId: userId // associate post with authenticated user

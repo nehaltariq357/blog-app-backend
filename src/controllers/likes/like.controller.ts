@@ -27,7 +27,10 @@ export const getLikesByPost = async (req: Request, res: Response) => {
                 userId
             }
         })
-        res.status(200).json(like);
+        res.status(200).json({
+            message: "Post liked successfully",
+            like
+        });
     } catch (error) {
         res.status(500).json({ error: "Failed to fetch likes" });
     }

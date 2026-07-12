@@ -5,7 +5,7 @@ export const delComment = async (req: Request, res: Response) => {
     try{
         const commentId = Number(req.params.commentId); // get commentId from request params
 
-        const userId = Number(req.user.userId) // req.user is added by authentication middleware; cast to any to satisfy TypeScript
+        const userId = Number((req as any).user.userId) // req.user is added by authentication middleware; cast to any to satisfy TypeScript
 
         const comment = await prisma.comment.findUnique({
             where: {

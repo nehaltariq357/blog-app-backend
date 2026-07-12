@@ -1,15 +1,20 @@
 import {prisma} from "../../lib/prisma"
 import { Request, Response } from "express";
 
-export const getPostById = async(req: Request, res: Response) => {
+export const getPostBySlug = async(req: Request, res: Response) => {
     try{
-        const postId = Number(req.params.postId); // get postId from request params
+        const rawSlug = req.params.slug;
+        const slug = Array.isArray(rawSlug) ? rawSlug[0] : rawSlug;
+
+        if (!slug) {
+            return res.status(400).json({ message: "Missing slug parameter" });
+        }
 
         const userId = (req as any).user?.userId // get userId from request object
 
         const post = await prisma.post.findUnique({
             where:{
-                slug:req.params.slug
+                slug,
             },
             include:{
                 author: {

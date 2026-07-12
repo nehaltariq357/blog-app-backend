@@ -13,7 +13,7 @@ import logoutRoutes from './routes/logout.routes';
 import createCmtRoutes from './routes/comments/createCmt.routes';
 import allCmtRoutes from './routes/comments/allCmt.routes';
 import delCmtRoutes from './routes/comments/delCmt.routes';
-import getPostByIdRoutes from './routes/posts/getPostById.route';
+import getPostByIdRoutes from './routes/posts/getPostByslug.route';
 import createLikeRoutes from './routes/likes/createLike.routes';
 import deleteLikeRoutes from './routes/likes/deleteLike.routes';
 import getLikeCountRoutes from './routes/likes/getLike.count.routes';
