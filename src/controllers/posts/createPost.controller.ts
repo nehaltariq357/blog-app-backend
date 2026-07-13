@@ -7,7 +7,7 @@ import slugify from "slugify";
 
 export const createPost = async (req: Request, res: Response) => {
     try {
-        const { title, content, visibility } = req.body; // post data from request body
+        const { title, content, visibility, thumbnail } = req.body; // post data from request body
         // req.user is added by authentication middleware; cast to any to satisfy TypeScript
         const userId = (req as any).user.userId
         // Create new post in database
@@ -28,7 +28,7 @@ export const createPost = async (req: Request, res: Response) => {
                 title,
                 slug, // generated slug
                 excerpt: cleanContent.substring(0, 100), // first 100 characters of sanitized content
-                thumbnail: (req as any).file?.path || null, // optional thumbnail from uploaded file
+                thumbnail,
                 content: cleanContent, // sanitized content
                 visibility, // public or private visibility
                 authorId: userId // associate post with authenticated user
