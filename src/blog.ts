@@ -17,8 +17,9 @@ import getPostByIdRoutes from './routes/posts/getPostByslug.route';
 import createLikeRoutes from './routes/likes/createLike.routes';
 import deleteLikeRoutes from './routes/likes/deleteLike.routes';
 import getLikeCountRoutes from './routes/likes/getLike.count.routes';
-
-
+import searchRoute from "./routes/posts/searchPost.route";
+import latestRoute from "./routes/posts/latest.routes";
+import trendingRoute from "./routes/posts/trending.route";
 dotenv.config(); // Load environment variables from .env file
 const app = express();
 app.use(cookieParser());
@@ -44,7 +45,9 @@ app.use('/api', createRoutes);
 app.use('/api', allRoutes);
 app.use('/api', editRoutes);
 app.use('/api', delRoutes);
-
+app.use('/api', searchRoute);
+app.use('/api', latestRoute);
+app.use('/api', trendingRoute);
 // comments routes
 app.use('/api', createCmtRoutes);
 app.use('/api', allCmtRoutes);
