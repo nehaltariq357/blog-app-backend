@@ -20,6 +20,7 @@ import getLikeCountRoutes from './routes/likes/getLike.count.routes';
 import searchRoute from "./routes/posts/searchPost.route";
 import latestRoute from "./routes/posts/latest.routes";
 import trendingRoute from "./routes/posts/trending.route";
+import currentRoute from "./routes/current.route"
 dotenv.config(); // Load environment variables from .env file
 const app = express();
 app.use(cookieParser());
@@ -39,6 +40,8 @@ app.use('/api', signupRoutes);
 app.use('/api', loginRoutes);
 // Use the logout routes
 app.use('/api', logoutRoutes);
+
+app.use('/api', currentRoute);
 
 // posts routes
 app.use('/api', createRoutes);
