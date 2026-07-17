@@ -36,15 +36,18 @@ export const login = async (req: Request, res: Response) => {
     // set access token in cookie
     res.cookie('accessToken', accessToken, {
         httpOnly: true,
-        secure: false,
-        sameSite: 'lax',
+        secure: true,
+        sameSite: "none",
+        maxAge:15*60*1000
     })
 
     // set refresh token in cookie
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
-        secure: false,
-        sameSite: 'lax',
+        secure: true,
+        sameSite: "none",
+        maxAge:7*24*60*60*1000
+
     })
 
     res.json({
@@ -53,8 +56,6 @@ export const login = async (req: Request, res: Response) => {
             id: user.id,
             email: user.email,
             name: user.name
-        },
-        token_access:accessToken,
-        token_refresh:refreshToken
+        }
     })
 }
