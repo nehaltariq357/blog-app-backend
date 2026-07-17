@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma.js";
 import { Request, Response } from "express";
 import sanitizeHtml from "sanitize-html";
 import slugify from "slugify";

@@ -1,8 +1,7 @@
 import {Router} from "express";
 
-import {unlikePost} from "../../controllers/likes/unlike.controller"
-
-import {middlewareAuth} from "../../middleware/auth.middleware"
+import { unlikePost } from "../../controllers/likes/unlike.controller.js";
+import { middlewareAuth } from "../../middleware/auth.middleware.js";
 
 const router = Router();
 

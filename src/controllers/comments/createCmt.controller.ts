@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma"
+import { prisma } from "../../lib/prisma.js"
 import { Request, Response } from "express";
 
 export const createComment = async (req: Request, res: Response) => {

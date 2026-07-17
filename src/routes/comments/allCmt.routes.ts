@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {getCommentsByPost} from "../../controllers/comments/allCmt.controller"
+import {getCommentsByPost} from "../../controllers/comments/allCmt.controller.js"
 
 const router = Router();
 

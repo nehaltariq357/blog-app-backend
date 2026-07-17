@@ -1,6 +1,6 @@
 import {Router} from "express";
-import getCurrentUser from "../controllers/current.controller";
-import { middlewareAuth } from "../middleware/auth.middleware";
+import getCurrentUser from "../controllers/current.controller.js";
+import { middlewareAuth } from "../middleware/auth.middleware.js";
 
 const router = Router();
 

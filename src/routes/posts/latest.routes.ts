@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { getLatestPosts } from "../../controllers/posts/latest.controller";
+import { getLatestPosts } from "../../controllers/posts/latest.controller.js";
 
 const router = Router();
 

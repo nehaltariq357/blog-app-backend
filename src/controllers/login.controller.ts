@@ -1,7 +1,7 @@
-import { prisma } from '../lib/prisma';
+import { prisma } from '../lib/prisma.js';
 import { Request, Response } from 'express';
-import { comparePassword } from '../Utils/password_utils';
-import { generateRefreshToken, generateAccessToken } from '../Utils/jwt_utils';
+import { comparePassword } from '../Utils/password_utils.js';
+import { generateRefreshToken, generateAccessToken } from '../Utils/jwt_utils.js';
 
 
 export const login = async (req: Request, res: Response) => {

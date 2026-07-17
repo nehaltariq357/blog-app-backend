@@ -1,7 +1,7 @@
 
-import { prisma } from '../lib/prisma';
+import { prisma } from '../lib/prisma.js';
 import { Request, Response } from 'express';
-import { hashedPassword } from '../Utils/password_utils';
+import { hashedPassword } from '../Utils/password_utils.js';
 
 export const signup = async (req: Request, res: Response) => {
     const { name, email, password } = req.body;

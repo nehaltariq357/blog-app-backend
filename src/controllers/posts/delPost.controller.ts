@@ -1,5 +1,5 @@
 
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma.js";
 import { Request, Response } from "express";
 export const delPost = async (req: Request, res: Response) => {
     try {
